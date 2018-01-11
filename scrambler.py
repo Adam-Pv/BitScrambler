@@ -4,54 +4,69 @@ import time
 from datetime import datetime
 
 now = datetime.now()
-
 mm = str(now.month)
-
 dd = str(now.day)
-
 yyyy = str(now.year)
-
 hour = str(now.hour)
-
 mi = str(now.minute)
-
 ss = str(now.second)
 
 print mm + "/" + dd + "/" + yyyy + " " + hour + ":" + mi + ":" + ss
 
-timeframe = raw_input("how many minutes would you like to schedule this for? ")
+timeframe = raw_input("how many minutes would you like to schedule this for? : ")
 
-addresses = raw_input("how many addesses would you like to send payment too? ")
+addresses = raw_input("how many addesses would you like to send payment too? : ")
 
 
-#converts timeframe(seconds) to minutes 
+#converts timeframe(seconds) to minutes
 timeframe=int(timeframe)*60
 
 publicKeys = {}
 
 for x in range (0, int(addresses)):
-	newKey = raw_input("Please type address ")# + str(x+1) + " of " + int(addresses)
+	newKey = raw_input("Please type address : ")# + str(x+1) + " of " + int(addresses)
 	while len(newKey) != 10:
 		print ("Please enter a proper key")
-		newKey = raw_input("Please type address ")# + str(x+1) + " of " + int(addresses)
+		newKey = raw_input("Please type a valid address : ")# + str(x+1) + " of " + int(addresses)
 
-	publicKeys[newKey] = random.randint(1 ,timeframe)
+	sendTime = random.randint(1 ,timeframe-1)
+	#publicKeys[newKey] = random.randint(1 ,timeframe)
+	publicKeys[sendTime] = newKey
+items = publicKeys.items()
+items.sort()
+
+print items
 print publicKeys
 
-	
+helper = 0
+timeLapsed = 0
 
-#executable
-for x in range(0, timeframe):
-	time.sleep(0.5)
-	if x in publicKeys.values():
-		print 'SENT PAYMENT'
-	print "We're on time %d" % (x+1)
+for i in range(0, timeframe):
+	time.sleep(0.1)
+	timeLapsed = timeLapsed + 1
+	if i in publicKeys:
+		print 'SENT PAYMENT TO: '
+		print publicKeys.get(i , "value")
+		print ''
+		helper = helper + 1
 
+		if int(helper) == int(addresses):
+			break
 
-	#if x = publicKeys.get('KEY[' + str(x) +']', 
-	
+	now = datetime.now()
+	mm = str(now.month)
+	dd = str(now.day)
+	yyyy = str(now.year)
+	hour = str(now.hour)
+	mi = str(now.minute)
+	ss = str(now.second)
+	print mm + "/" + dd + "/" + yyyy + " " + hour + ":" + mi + ":" + ss
+	#if x = publicKeys.get('KEY[' + str(x) +']',
+
 #print randTimeframe
 
+print 'Completed payments'
+print timeLapsed
 
 now = datetime.now()
 
@@ -68,5 +83,3 @@ mi = str(now.minute)
 ss = str(now.second)
 
 print mm + "/" + dd + "/" + yyyy + " " + hour + ":" + mi + ":" + ss
-
-
