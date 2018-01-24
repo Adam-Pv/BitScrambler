@@ -5,9 +5,15 @@ from datetime import datetime
 from progress.bar import Bar, IncrementalBar
 
 timeframe = raw_input("how many minutes would you like to schedule this for? : ")
+	
+while timeframe.isdigit() == False or int(timeframe) == 0:
+	print ("Invalid entry!")
+	timeframe = raw_input("How many minutes would you like to schedule this for? : ")
 
 addresses = raw_input("how many addesses would you like to send payment too? : ")
-
+while int(addresses) > 100 or int(addresses) == 0:
+	print ("Addresses limited to 30!")
+	addresses = raw_input("how many addesses would you like to send payment too? : ")
 
 #converts timeframe(seconds) to minutes
 timeframe=int(timeframe)*60
