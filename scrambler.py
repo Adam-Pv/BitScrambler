@@ -34,6 +34,7 @@ while addresses.isdigit() == False or int(addresses) == 0:
 	print ("Addresses limited to 30!")
 	addresses = raw_input("how many addesses would you like to send payment too? : ")
 
+
 #converts timeframe(seconds) to minutes
 timeframe=int(timeframe)*60
 
