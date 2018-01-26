@@ -29,7 +29,8 @@ while timeframe.isdigit() == False or int(timeframe) == 0:
 	timeframe = raw_input("How many minutes would you like to schedule this for? : ")
 
 addresses = raw_input("How many addesses would you like to send payment too? : ")
-while int(addresses) > 100 or int(addresses) == 0:
+while addresses.isdigit() == False or int(addresses) == 0:
+	print ("Invalid entry!")
 	print ("Addresses limited to 30!")
 	addresses = raw_input("how many addesses would you like to send payment too? : ")
 
@@ -44,6 +45,10 @@ for x in range (0, int(addresses)):
 		newKey = raw_input("Invalid key, try again  : ")
 
 	sendTime = random.randint(1 ,timeframe-1)
+
+	if x == 0:
+		sendTime = 1
+	
 	publicKeys[sendTime] = newKey
 
 items = publicKeys.items()
@@ -61,6 +66,10 @@ sentTime = []
 sentKeys = []
 
 print "This will take about " + str(items[0][0] + 1) + " seconds.."
+
+print ""
+
+raw_input("Are you sure the above addresses are correct? [ENTER] to continue ")
 
 print ""
 
